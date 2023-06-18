@@ -413,7 +413,7 @@ func (sc *StatementContext) SetFlagsFromPBFlag(flags uint64) {
 	sc.DividedByZeroAsWarning = (flags & model.FlagDividedByZeroAsWarning) > 0
 }
 
-//CopTasksDetails collects some useful information of cop-tasks during execution.
+// CopTasksDetails collects some useful information of cop-tasks during execution.
 type CopTasksDetails struct {
 	NumCopTasks int
 

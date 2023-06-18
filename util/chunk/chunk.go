@@ -57,8 +57,9 @@ func NewChunkWithCapacity(fields []*types.FieldType, cap int) *Chunk {
 }
 
 // New creates a new chunk.
-//  cap: the limit for the max number of rows.
-//  maxChunkSize: the max limit for the number of rows.
+//
+//	cap: the limit for the max number of rows.
+//	maxChunkSize: the max limit for the number of rows.
 func New(fields []*types.FieldType, cap, maxChunkSize int) *Chunk {
 	chk := &Chunk{
 		columns:  make([]*Column, 0, len(fields)),
@@ -94,8 +95,9 @@ func renewWithCapacity(chk *Chunk, cap, maxChunkSize int) *Chunk {
 // Renew creates a new Chunk based on an existing Chunk. The newly created Chunk
 // has the same data schema with the old Chunk. The capacity of the new Chunk
 // might be doubled based on the capacity of the old Chunk and the maxChunkSize.
-//  chk: old chunk(often used in previous call).
-//  maxChunkSize: the limit for the max number of rows.
+//
+//	chk: old chunk(often used in previous call).
+//	maxChunkSize: the limit for the max number of rows.
 func Renew(chk *Chunk, maxChunkSize int) *Chunk {
 	newCap := reCalcCapacity(chk, maxChunkSize)
 	return renewWithCapacity(chk, newCap, maxChunkSize)
@@ -357,14 +359,14 @@ func (c *Chunk) AppendPartialRow(colIdx int, row Row) {
 
 // preAlloc pre-allocates the memory space in a Chunk to store the Row.
 // NOTE: only used in test.
-// 1. The Chunk must be empty or holds no useful data.
-// 2. The schema of the Row must be the same with the Chunk.
-// 3. This API is paired with the `Insert()` function, which inserts all the
-//    rows data into the Chunk after the pre-allocation.
-// 4. We set the null bitmap here instead of in the Insert() function because
-//    when the Insert() function is called parallelly, the data race on a byte
-//    can not be avoided although the manipulated bits are different inside a
-//    byte.
+//  1. The Chunk must be empty or holds no useful data.
+//  2. The schema of the Row must be the same with the Chunk.
+//  3. This API is paired with the `Insert()` function, which inserts all the
+//     rows data into the Chunk after the pre-allocation.
+//  4. We set the null bitmap here instead of in the Insert() function because
+//     when the Insert() function is called parallelly, the data race on a byte
+//     can not be avoided although the manipulated bits are different inside a
+//     byte.
 func (c *Chunk) preAlloc(row Row) (rowIdx uint32) {
 	rowIdx = uint32(c.NumRows())
 	for i, srcCol := range row.c.columns {

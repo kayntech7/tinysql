@@ -11,6 +11,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+//go:build !codes
 // +build !codes
 
 package testutil
@@ -78,7 +79,8 @@ type datumEqualsChecker struct {
 // DatumEquals checker verifies that the obtained value is equal to
 // the expected value.
 // For example:
-//     c.Assert(value, DatumEquals, NewDatum(42))
+//
+//	c.Assert(value, DatumEquals, NewDatum(42))
 var DatumEquals check.Checker = &datumEqualsChecker{
 	&check.CheckerInfo{Name: "DatumEquals", Params: []string{"obtained", "expected"}},
 }

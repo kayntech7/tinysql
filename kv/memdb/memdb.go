@@ -307,6 +307,7 @@ func (db *DB) newNode(arena *arena, key []byte, v []byte, height int) (*node, ar
 }
 
 // fastRand is a fast thread local random function.
+//
 //go:linkname fastRand runtime.fastrand
 func fastRand() uint32
 

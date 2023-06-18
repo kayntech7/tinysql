@@ -127,10 +127,10 @@ func (l *List) Reset() {
 
 // preAlloc4Row pre-allocates the storage memory for a Row.
 // NOTE: only used in test
-// 1. The List must be empty or holds no useful data.
-// 2. The schema of the Row must be the same with the List.
-// 3. This API is paired with the `Insert()` function, which inserts all the
-//    rows data into the List after the pre-allocation.
+//  1. The List must be empty or holds no useful data.
+//  2. The schema of the Row must be the same with the List.
+//  3. This API is paired with the `Insert()` function, which inserts all the
+//     rows data into the List after the pre-allocation.
 func (l *List) preAlloc4Row(row Row) (ptr RowPtr) {
 	chkIdx := len(l.chunks) - 1
 	if chkIdx == -1 || l.chunks[chkIdx].NumRows() >= l.chunks[chkIdx].Capacity() {

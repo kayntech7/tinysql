@@ -284,8 +284,9 @@ func (r *builder) buildFormBinOp(expr *expression.ScalarFunction) []point {
 // HandlePadCharToFullLength handles the "PAD_CHAR_TO_FULL_LENGTH" sql mode for
 // CHAR[N] index columns.
 // NOTE: kv.ErrNotExist is returned to indicate that this value can not match
-//		 any (key, value) pair in tikv storage. This error should be handled by
-//		 the caller.
+//
+//	any (key, value) pair in tikv storage. This error should be handled by
+//	the caller.
 func HandlePadCharToFullLength(sc *stmtctx.StatementContext, ft *types.FieldType, val types.Datum) (types.Datum, error) {
 	isChar := (ft.Tp == mysql.TypeString)
 	isBinary := (isChar && ft.Collate == charset.CollationBin)

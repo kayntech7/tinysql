@@ -30,16 +30,16 @@ var (
 // joiner is used to generate join results according to the join type.
 // A typical instruction flow is:
 //
-//     hasMatch, hasNull := false, false
-//     for innerIter.Current() != innerIter.End() {
-//         matched, isNull, err := j.tryToMatchInners(outer, innerIter, chk)
-//         // handle err
-//         hasMatch = hasMatch || matched
-//         hasNull = hasNull || isNull
-//     }
-//     if !hasMatch {
-//         j.onMissMatch(hasNull, outer, chk)
-//     }
+//	hasMatch, hasNull := false, false
+//	for innerIter.Current() != innerIter.End() {
+//	    matched, isNull, err := j.tryToMatchInners(outer, innerIter, chk)
+//	    // handle err
+//	    hasMatch = hasMatch || matched
+//	    hasNull = hasNull || isNull
+//	}
+//	if !hasMatch {
+//	    j.onMissMatch(hasNull, outer, chk)
+//	}
 //
 // NOTE: This interface is **not** thread-safe.
 type joiner interface {
